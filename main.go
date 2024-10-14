@@ -47,6 +47,8 @@ func newStatusCode(err error) int {
 func main() {
 	e := echo.New()
 	// errorsパッケージを使ったサンプル
+	// NOTE: 今回のサンプルでは、appErrorという共通のエラータイプを定義し利用することにしているため、型の等値性による出し分けができない (codeとmessageが異なるので)
+	// もし、エラーごとにstructを定義する場合は、型チェックのみでhandlerで出し分けが可能
 	e.GET("/errors", func(c echo.Context) error {
 		slog.Info("Start GET /errors")
 		t := c.QueryParam("type")
