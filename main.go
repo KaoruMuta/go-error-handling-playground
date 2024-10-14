@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo/v4"
+	"github.com/morikuni/failure/v2"
 )
 
 // errType query paramで受け取るエラータイプ
@@ -52,6 +53,16 @@ func main() {
 				return c.JSON(http.StatusInternalServerError, err)
 			}
 		}
+		return c.String(http.StatusOK, "Hello, World!")
+	})
+	// failureパッケージを使ったサンプル
+	e.GET("/failure", func(c echo.Context) error {
+		slog.Info("Start GET /failure")
+		// t := c.QueryParam("type")
+		// err := handleErrByErrors(NewErrType(t))
+		// slog.Info("error check", "errType", t, "err", err)
+		sampleErr := failure.New(model.ErrInternalServer)
+		slog.Info("failure test", "code", failure.CodeOf(sampleErr))
 		return c.String(http.StatusOK, "Hello, World!")
 	})
 	e.Logger.Fatal(e.Start(":1323"))
