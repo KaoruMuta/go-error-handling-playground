@@ -2,11 +2,11 @@ package model
 
 // アプリケーション側で起こりうる特定のエラーに対して特別ハンドリングしたい場合、独自エラーとして定義しておく
 var (
-	ErrBadRequest         = NewAppError(ErrCodeBadRequest, "Bad request")
-	ErrNotFound           = NewAppError(ErrCodeNotFound, "Not found")
-	ErrInternalServer     = NewAppError(ErrCodeInternalServer, "Internal server error")
-	ErrCarIsAlreadyBooked = NewAppError(ErrCodeCarIsAlreadyBooked, "Car is already booked")
-	ErrShopClosed         = NewAppError(ErrCodeShopClosed, "Shop is closed")
+	AppErrBadRequest         = NewAppError(ErrCodeBadRequest, "Bad request")
+	AppErrNotFound           = NewAppError(ErrCodeNotFound, "Not found")
+	AppErrInternalServer     = NewAppError(ErrCodeInternalServer, "Internal server error")
+	AppErrCarIsAlreadyBooked = NewAppError(ErrCodeCarIsAlreadyBooked, "Car is already booked")
+	AppErrShopClosed         = NewAppError(ErrCodeShopClosed, "Shop is closed")
 )
 
 type ErrorCode string

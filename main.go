@@ -54,19 +54,19 @@ func main() {
 		slog.Info("error check", "errType", t, "err", err)
 		if err != nil {
 			// 車を予約したいというビジネス要件を想定
-			if errors.Is(err, model.ErrCarIsAlreadyBooked) {
+			if errors.Is(err, model.AppErrCarIsAlreadyBooked) {
 				// 車が予約されているのに、再度予約しようとした場合は422を返す
 				// その場合、FE側で予約ページにて、車が予約されている旨を表示する想定
 				return c.JSON(http.StatusUnprocessableEntity, err)
-			} else if errors.Is(err, model.ErrShopClosed) {
+			} else if errors.Is(err, model.AppErrShopClosed) {
 				// 店が閉まっている時は422を返す
 				// その場合、FE側で予約ページにて、店が閉まっている旨を表示する想定
 				return c.JSON(http.StatusUnprocessableEntity, err)
 			}
 
-			if errors.Is(err, model.ErrBadRequest) {
+			if errors.Is(err, model.AppErrBadRequest) {
 				return c.JSON(http.StatusBadRequest, err)
-			} else if errors.Is(err, model.ErrNotFound) {
+			} else if errors.Is(err, model.AppErrNotFound) {
 				return c.JSON(http.StatusNotFound, err)
 			} else {
 				return c.JSON(http.StatusInternalServerError, err)

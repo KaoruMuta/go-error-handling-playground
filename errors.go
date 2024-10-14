@@ -6,16 +6,16 @@ func handleErrByErrors(e errType) error {
 	// 諸々のビジネスロジックが書かれており、返すエラーの種類が以下の想定
 	switch e {
 	case errTypeBadRequest:
-		return model.ErrBadRequest
+		return model.AppErrBadRequest
 	case errTypeNotFound:
-		return model.ErrNotFound
+		return model.AppErrNotFound
 	case errTypeInternalServer:
-		return model.ErrInternalServer
+		return model.AppErrInternalServer
 	case errTypeCarIsAlreadyBooked:
-		return model.ErrCarIsAlreadyBooked
+		return model.AppErrCarIsAlreadyBooked
 	case errTypeShopClosed:
-		return model.ErrShopClosed
+		return model.AppErrShopClosed
 	default:
-		return model.ErrInternalServer
+		return model.AppErrInternalServer
 	}
 }
